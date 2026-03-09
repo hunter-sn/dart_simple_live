@@ -21,12 +21,12 @@ jobs:
           #ref: dev
 
       # APK签名设置
-      - name: Download Android keystore
-        id: android_keystore
-        uses: timheuer/base64-to-file@v1.2
-        with:
-          fileName: keystore.jks
-          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
+      #- name: Download Android keystore
+      #  id: android_keystore
+      #  uses: timheuer/base64-to-file@v1.2
+      #  with:
+      #    fileName: keystore.jks
+      #    encodedString: ${{ secrets.KEYSTORE_BASE64 }}
       - name: Create key.properties
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > simple_live_app/android/key.properties
@@ -70,6 +70,7 @@ jobs:
       - name: Build APK
         run: |
           cd simple_live_app
+          flutter pub get
           flutter build apk --release --split-per-abi
 
       #上传Artifacts
