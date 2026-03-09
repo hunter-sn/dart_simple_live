@@ -69,8 +69,11 @@ jobs:
       # 打包APK
       - name: Build APK
         env:
-          # 隨便寫一個字串，只要不是空的就行
+          # 給予空的或預設的值，防止 Gradle 報 path 錯誤
           RELEASE_STORE_FILE: "debug.keystore"
+          RELEASE_KEY_ALIAS: "androiddebugkey"
+          RELEASE_STORE_PASSWORD: "android"
+          RELEASE_KEY_PASSWORD: "android"
         run: |
           cd simple_live_app
           flutter pub get
