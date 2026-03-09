@@ -68,6 +68,9 @@ jobs:
 
       # 打包APK
       - name: Build APK
+        env:
+          # 隨便寫一個字串，只要不是空的就行
+          RELEASE_STORE_FILE: "debug.keystore"
         run: |
           cd simple_live_app
           flutter pub get
